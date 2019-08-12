@@ -20,17 +20,36 @@
           </thead>
           <tbody>
             {% for contato in contatos %}
-              <tr>
-                <td>
-                  <a href="{% url 'contato' contato.id %}">{{ contato.nome }}</a>
-                </td>
-                <td>{{ contato.sobrenome }}</td>
-                <td>{{ contato.telefone }}</td>
-                <td>{{ contato.email }}</td>
-                <td>{{ contato.categoria }}</td>
-              </tr>
+                {% if contato.listado %}
+                  <tr>
+                    <td>
+                      <a href="{% url 'contato' contato.id %}">{{ contato.nome }}</a>
+                    </td>
+                    <td>{{ contato.sobrenome }}</td>
+                    <td>{{ contato.telefone }}</td>
+                    <td>{{ contato.email }}</td>
+                    <td>{{ contato.categoria }}</td>
+                  </tr>
+                {% endif %}
             {% endfor %}
             </tbody>
         </table>
+
+      <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+          {% for pagina in contatos.paginator.page_range %}
+              {% if contatos.number == pagina %}
+                <li class="page-item active">
+                    <a class="page-link" href="?page={{ pagina }}">{{ pagina }}</a>
+                </li>
+              {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ pagina }}">{{ pagina }}</a>
+                </li>
+              {% endif %}
+          {% endfor %}
+      </ul>
+</nav>
+
   </div>
 {% endblock %}
