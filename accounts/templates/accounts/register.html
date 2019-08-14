@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<div class="container-fluid register">
+                <div class="row">
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>Bem - vindo!</h3>
+                        <p>Você está a 30 segundos de usar a agenda mais legal do mundo!</p>
+                        <input type="submit" name="" value="Login"/><br/>
+                    </div>
+                    <div class="col-md-9 register-right">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <h3 class="register-heading">Cadastro</h3>
+                                {% include 'parciais/_messages.html' %}
+                                <form autocomplete="off" method="post" action="{% url 'register' %}">
+                                    {% csrf_token %}
+                                    <div class="row register-form">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" required class="form-control" name="nome" value="{{ request.POST.nome }}" placeholder="Nome *"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" required class="form-control" name="sobrenome" value="{{ request.POST.sobrenome }}" placeholder="Sobrenome *"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" required class="form-control" name="senha" placeholder="Senha (Ela precisa ser sercreta) *"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" required class="form-control" name="confimarsenha" placeholder="Confirme a senha *" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="email" required class="form-control" name="email" value="{{ request.POST.email }}" placeholder="E-mail *" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" required name="celular" class="form-control" value="{{ request.POST.celular }}" placeholder="Celular *" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" required maxlength="10" name="apelido" class="form-control" value="{{ request.POST.apelido }}" placeholder="Apelido *"  />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="preparado" value="{{ request.POST.preparado }}" placeholder="Está preparado? " />
+                                            </div>
+                                            <button type="submit" class="btnRegister">Cadastrar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+{% endblock %}

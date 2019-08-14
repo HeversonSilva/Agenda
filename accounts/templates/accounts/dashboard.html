@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block conteudo %}
+
+<h1 class="mt-5" style="text-align: center;">Olá {{ user.first_name }} {{ user.last_name }}</h1>
+{% include 'parciais/_messages.html' %}
+<div class="container">
+    <p>Cadastre seus contatos aqui</p>
+    <form method="POST" action="{% url 'dashboard' %}" enctype="multipart/form-data">
+         {% csrf_token %}
+        <table class="table">
+            {{ form }}
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn btn-dark">Cadastrar</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</div>
+
+{% endblock %}

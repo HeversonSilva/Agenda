@@ -1,5 +1,4 @@
 {% load static %}
-
 <!doctype html>
 <html lang="pt">
 <head>
@@ -9,6 +8,9 @@
 </head>
 <body>
       {% include 'parciais/_nav.html' %}
+      {% if 'accounts' not in request.path %}
+            {% include 'parciais/_messages.html' %}
+      {% endif %}
 
       {% block conteudo %}
       {% endblock %}

@@ -1,16 +1,31 @@
    {% load static %}
+{% if 'accounts' not in request.path %}
+   {% if user.is_authenticated %}
+        <div class="menu">
+          <div class="title" onclick="f()" style="text-align: center">{{ user.first_name }} <span class="fa fa-bars"></span>
+            <div class="arrow"></div>
+          </div>
+          <div class="dropdown">
+            <a href="{% url 'index' %}" style="text-decoration: none; color: black"><p class="pClass">Home <span class="fa fa-home"></span></p></a>
+            <p class="pClass">Settings <span class="fa fa-gear"></span></p>
+              <a href="{% url 'logout' %}" style="text-decoration: none; color: black" ><p class="pClass">Logout <span class="fa fa-sign-out"></span></p></a>
+          </div>
+        </div>
+   {% else %}
 
-<div class="menu">
-  <div class="title" onclick="f()">John Doe <span class="fa fa-bars"></span>
-    <div class="arrow"></div>
-  </div>
-  <div class="dropdown">
-    <a href="{% url 'index' %}" style="text-decoration: none; color: black"><p>Home <span class="fa fa-home"></span></p></a>
-    <p>Settings <span class="fa fa-gear"></span></p>
-    <p>Sign Out <span class="fa fa-sign-out"></span></p>
-  </div>
-</div>
+        <div class="menu">
+          <div class="title" onclick="f()" style="text-align: center">Olá estranho :) <span class="fa fa-bars"></span>
+            <div class="arrow"></div>
+          </div>
+          <div class="dropdown">
+            <a href="{% url 'index' %}" style="text-decoration: none; color: black"><p class="pClass">Home <span class="fa fa-home"></span></p></a>
+            <p class="pClass">Settings <span class="fa fa-gear"></span></p>
+            <a href="{% url 'login' %}" style="text-decoration: none; color: black" ><p class="pClass">Login <span class="fa fa-sign-out"></span></p></a>
+          </div>
+        </div>
 
+   {% endif %}
+{% endif %}
 <script>
 
     function f() {
